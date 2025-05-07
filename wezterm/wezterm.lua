@@ -2,6 +2,7 @@ local wezterm = require "wezterm"
 local config = wezterm.config_builder()
 local action = wezterm.action
 
+config.color_scheme = '3024 (dark) (terminal.sexy)'
 config.font = wezterm.font {
   family = 'JetBrains Mono',
   weight = 'Medium',
@@ -17,11 +18,9 @@ config.window_decorations = 'TITLE|RESIZE'
 config.window_background_opacity = 0.96
 config.macos_window_background_blur = 20
 
-config.window_background_opacity = 0.8
-
 config.inactive_pane_hsb = {
   saturation = 0.1,
-  brightness = 0.4,
+  brightness = 0.8,
 }
 
 config.keys = {
