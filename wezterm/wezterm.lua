@@ -25,9 +25,10 @@ config.keys = {
   { key = 'k', mods = 'CMD', action = action.ClearScrollback 'ScrollbackAndViewport' },
   { key = 'w', mods = 'CMD', action = action.CloseCurrentPane { confirm = false } },
   { key = 'w', mods = 'CMD|SHIFT', action = action.CloseCurrentTab { confirm = false } },
-  { key = 'LeftArrow', mods = 'CMD', action = action.SendKey { key = 'Home' } },
-  { key = 'RightArrow', mods = 'CMD', action = action.SendKey { key = 'End' } },
   { key = 'p', mods = 'CMD|SHIFT', action = action.ActivateCommandPalette },
+  { key = 'LeftArrow', mods = 'CMD', action = action.ActivatePaneDirection 'Left' },
+  { key = 'RightArrow', mods = 'CMD', action = action.ActivatePaneDirection 'Right' },
+  { key = 'LeftArrow', mods = 'CMD|OPT', action = action.ActivateTabRelative(-1) },
+  { key = 'RightArrow', mods = 'CMD|OPT', action = action.ActivateTabRelative(1) }
 }
-
 return config
