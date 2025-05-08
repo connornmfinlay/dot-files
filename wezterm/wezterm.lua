@@ -2,7 +2,7 @@ local wezterm = require "wezterm"
 local config = wezterm.config_builder()
 local action = wezterm.action
 
-config.color_scheme = '3024 (dark) (terminal.sexy)'
+config.color_scheme = 'Breeze (Gogh)'
 config.font = wezterm.font {
   family = 'JetBrains Mono',
   weight = 'Medium',
