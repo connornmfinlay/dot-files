@@ -38,5 +38,10 @@ config.keys = {
   { key = 'RightArrow', mods = 'CMD|CTRL', action = action.AdjustPaneSize { 'Right', 5 } },
   { key = 'UpArrow',    mods = 'CMD|CTRL', action = action.AdjustPaneSize { 'Up',    5 } },
   { key = 'DownArrow',  mods = 'CMD|CTRL', action = action.AdjustPaneSize { 'Down',  5 } },
+  { key = 'f', mods = 'CMD|CTRL', action = action.ToggleFullScreen },
 }
+
+config.send_composed_key_when_left_alt_is_pressed = true
+config.send_composed_key_when_right_alt_is_pressed = true
+
 return config
