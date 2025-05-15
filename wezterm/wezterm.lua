@@ -2,7 +2,7 @@ local wezterm = require "wezterm"
 local config = wezterm.config_builder()
 local action = wezterm.action
 
-config.color_scheme = 'catppuccin-frappe'
+config.color_scheme = 'catppuccin-latte (Gogh)'
 config.font = wezterm.font {
   family = 'JetBrains Mono',
   weight = 'Medium',
