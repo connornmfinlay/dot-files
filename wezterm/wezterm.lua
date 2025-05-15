@@ -2,7 +2,7 @@ local wezterm = require "wezterm"
 local config = wezterm.config_builder()
 local action = wezterm.action
 
-config.color_scheme = 'Breeze (Gogh)'
+config.color_scheme = 'catppuccin-frappe'
 config.font = wezterm.font {
   family = 'JetBrains Mono',
   weight = 'Medium',
@@ -15,7 +15,7 @@ config.window_padding = { left = '0.5cell', right = '0.5cell', top = '0.5cell', 
 config.default_cursor_style = 'BlinkingBar'
 
 config.window_decorations = 'TITLE|RESIZE'
-config.window_background_opacity = 0.96
+config.window_background_opacity = 0.66
 config.macos_window_background_blur = 20
 
 config.inactive_pane_hsb = {
