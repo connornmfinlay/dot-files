@@ -1,7 +1,4 @@
-# Pre-Reqs - zinit package manager, powerlevel10k theme
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+eval "$(starship init zsh)"
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -11,9 +8,6 @@ if [ ! -d "ZINIT_HOME" ]; then
 fi
 
 source "${ZINIT_HOME}/zinit.zsh"
-
-#Package Installations
-zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -27,7 +21,7 @@ zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::brew
 zinit snippet OMZP::common-aliases
-#zinit snippet OMZP::rust
+zinit snippet OMZP::rust
 zinit snippet OMZP::golang
 zinit snippet OMZP::ssh
 zinit snippet OMZP::command-not-found
@@ -38,9 +32,6 @@ zi light zdharma-continuum/zinit-annex-rust
 autoload -U compinit && compinit
 
 zinit cdreplay -q
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #History settings
 HISTSIZE=5000
@@ -91,20 +82,5 @@ export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 export CLICOLOR=1
 export LSCOLORS=gxfxbxdxcxegedabagacad
 
-source ~/.p10k.zsh
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
-
-# Add to .zprofile
-#COWPATH="$COWPATH:$HOME/.cowsay/cowfiles" 
-# Cow-spoken fortunes every time you open a terminal
-#function cowsayfortune {
-#    NUMOFCOWS=`cowsay -l | tail -n +2 | wc -w`
-#    WHICHCOW=$((RANDOM%$NUMOFCOWS+1))
-#    THISCOW=`cowsay -l | tail -n +2 | sed -e 's/\ /\'$'\n/g' | sed $WHICHCOW'q;d'`
-
-    #echo "Selected cow: ${THISCOW}, from ${WHICHCOW}"
- #   fortune | cowsay -f $THISCOW -W 100 | lolcat
-#}
-
-#cowsayfortune
