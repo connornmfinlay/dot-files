@@ -21,7 +21,7 @@ zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::brew
 zinit snippet OMZP::common-aliases
-zinit snippet OMZP::rust
+#zinit snippet OMZP::rust
 zinit snippet OMZP::golang
 zinit snippet OMZP::ssh
 zinit snippet OMZP::command-not-found
