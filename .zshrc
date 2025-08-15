@@ -64,11 +64,12 @@ alias ll="ls -al"
 alias ll="ls -laF"
 
 alias linkage="python3 /Users/cfinlay/Documents/OneDrive\ -\ University\ of\ Edinburgh/Work-Projects/dscs/dscs_shift_stuff/scripts/linkage"
-alias pp="python3 /Users/cfinlay/Documents/OneDrive\ -\ University\ of\ Edinburgh/Work-Projects/dscs/shift-stuff/password.py"
+alias pp="python3 /Users/cfinlay/Documents/OneDrive\ -\ University\ of\ Edinburgh/Work-Projects/dscs/shift-stuff/passwords-scripts/password.py"
 alias rustlings="/Users/cfinlay/.cargo/bin/rustlings"
 alias group="python3 /Users/cfinlay/Documents/OneDrive\ -\ University\ of\ Edinburgh/work-projects/dscs/shift-stuff/shs-script/command-gen.py"
 
 alias p="/Users/cfinlay/Documents/OneDrive\ -\ University\ of\ Edinburgh/projects/rust/rust-programs/pass-gen/target/debug/pass-gen"
+alias lp="/Users/cfinlay/OneDrive\ -\ University\ of\ Edinburgh/projects/golang/wordpassgen/longpass"
 
 # Shell Integrations
 eval "$(fzf --zsh)"

@@ -23,6 +23,14 @@ config.inactive_pane_hsb = {
   brightness = 0.8,
 }
 
+config.visual_bell = {
+  fade_in_duration_ms = 75,
+  fade_out_duration_ms = 150,
+  target = "BackgroundColor" 
+}
+
+config.audible_bell = "Disabled"
+
 config.keys = {
   { key = 'd', mods = 'CMD|SHIFT', action = action.SplitVertical { domain = 'CurrentPaneDomain' } },
   { key = 'd', mods = 'CMD', action = action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
