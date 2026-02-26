@@ -1,3 +1,5 @@
+eval "$(starship init zsh)"
+
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 if [ ! -d "ZINIT_HOME" ]; then
@@ -60,9 +62,7 @@ bindkey '^n' history-search-backwords
 alias ls="ls --color"
 alias ll="ls -al"
 alias ll="ls -laF"
-alias sst="ssh -t hsupport01 ssh "
-alias cst='ssh -t crosswood01 ssh '
-alias lst='ssh -t loch01 ssh '
+alias ssht="ssh -t hsupport01 ssh "
 
 alias linkage="python3 /Users/cfinlay/Documents/OneDrive\ -\ University\ of\ Edinburgh/Work-Projects/dscs/dscs_shift_stuff/scripts/linkage"
 alias pp="python3 /Users/cfinlay/Documents/OneDrive\ -\ University\ of\ Edinburgh/Work-Projects/dscs/shift-stuff/passwords-scripts/password.py"
@@ -80,5 +80,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
+export CLICOLOR=1
+export LSCOLORS=gxfxbxdxcxegedabagacad
 
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
