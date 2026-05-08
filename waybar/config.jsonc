@@ -1,0 +1,145 @@
+// -*- mode: jsonc -*-
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/submap",
+        "custom/media"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "mpd",
+        "idle_inhibitor",
+        "pulseaudio",
+        "network",
+        "power-profiles-daemon",
+        "battery",
+        "clock",
+        "tray",
+        "custom/power"
+    ],
+    "hyprland/submap": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) \u2e28{songPosition}|{queueLength}\u2e29 {volume}% \uf001",
+        "format-disconnected": "Disconnected \uf001",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped \uf001",
+        "unknown-tag": "N/A",
+        "interval": 5,
+        "consume-icons": {
+            "on": "\uf01e "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\">\uf074</span> ",
+            "on": "\uf074 "
+        },
+        "repeat-icons": {
+            "on": "\uf079 "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "\uf04c",
+            "playing": "\uf04b"
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "\uf06e",
+            "deactivated": "\uf070"
+        }
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "format": "\uf017 {:%H:%M}",
+        "format-alt": "{:%Y-%m-%d}",
+        "tooltip-format": "<big>{:%A, %d %B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% \uf0e7",
+        "format-plugged": "{capacity}% \uf1e6",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"]
+    },
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "\uf0e7",
+            "performance": "\uf0e7",
+            "balanced": "\uf0e7",
+            "power-saver": "\uf06c"
+        }
+    },
+    "network": {
+        "format-wifi": "\uf1eb {essid} ({signalStrength}%)",
+        "format-ethernet": "\uf6ff {ipaddr}/{cidr}",
+        "tooltip-format": "{ifname} via {gwaddr}\nIP: {ipaddr}",
+        "format-linked": "\uf6ff {ifname} (No IP)",
+        "format-disconnected": "\uf071 Disconnected",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click-right": "nm-connection-editor"
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": "\uf026 {icon} {format_source}",
+        "format-muted": "\uf026 {format_source}",
+        "format-source": "{volume}% \uf130",
+        "format-source-muted": "\uf131",
+        "format-icons": {
+            "headphone": "\uf025",
+            "hands-free": "\uf590",
+            "headset": "\uf590",
+            "phone": "\uf095",
+            "portable": "\uf095",
+            "car": "\uf1b9",
+            "default": ["\uf026", "\uf027", "\uf028"]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/media": {
+        "format": "{icon} {text}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "\uf1bc",
+            "default": "\ud83c\udfdc"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+    },
+    "custom/power": {
+        "format": "\u23fb ",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "$HOME/.config/waybar/power_menu.xml",
+        "menu-actions": {
+            "shutdown": "shutdown",
+            "reboot": "reboot",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate"
+        }
+    }
+}
