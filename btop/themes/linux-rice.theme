@@ -1,0 +1,41 @@
+# Linux Rice theme for btop++
+# Palette from bashrc:
+#   Blue   #89CFF0  — dominant, text, graphs
+#   Pink   #E040FB  — accents, alerts, highlights
+#   Purple #6B2FA0  — secondary, borders
+#   Dark   #1A0A2E  — backgrounds
+#   Black  #0D0019  — deep background
+
+theme[main_bg]="#0D0019"
+theme[main_fg]="#89CFF0"
+theme[title]="#89CFF0"
+theme[hi_fg]="#E040FB"
+theme[selected_bg]="#1A0A2E"
+theme[selected_fg]="#E040FB"
+theme[inactive_fg]="#6B2FA0"
+theme[graph_text]="#89CFF0"
+theme[meter_bg]="#1A0A2E"
+theme[proc_misc]="#89CFF0"
+theme[cpu_box]="#6B2FA0"
+theme[mem_box]="#6B2FA0"
+theme[net_box]="#6B2FA0"
+theme[proc_box]="#6B2FA0"
+theme[div_line]="#1A0A2E"
+theme[temp_start]="#89CFF0"
+theme[temp_mid]="#6B2FA0"
+theme[temp_end]="#E040FB"
+theme[cpu_start]="#89CFF0"
+theme[cpu_mid]="#6B2FA0"
+theme[cpu_end]="#E040FB"
+theme[free_start]="#89CFF0"
+theme[free_mid]="#6B2FA0"
+theme[free_end]="#E040FB"
+theme[download_start]="#89CFF0"
+theme[download_mid]="#6B2FA0"
+theme[download_end]="#E040FB"
+theme[upload_start]="#89CFF0"
+theme[upload_mid]="#6B2FA0"
+theme[upload_end]="#E040FB"
+theme[process_start]="#89CFF0"
+theme[process_mid]="#6B2FA0"
+theme[process_end]="#E040FB"

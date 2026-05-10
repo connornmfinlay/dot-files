@@ -1,11 +1,8 @@
 // -*- mode: jsonc -*-
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
+    "height": 30,
+    "spacing": 4,
+
     "modules-left": [
         "hyprland/workspaces",
         "hyprland/submap",
@@ -25,28 +22,17 @@
         "tray",
         "custom/power"
     ],
+
     "hyprland/submap": {
         "format": "<span style=\"italic\">{}</span>"
     },
+
     "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) \u2e28{songPosition}|{queueLength}\u2e29 {volume}% \uf001",
+        "format": "{stateIcon} {artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) \uf001",
         "format-disconnected": "Disconnected \uf001",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped \uf001",
+        "format-stopped": "Stopped \uf001",
         "unknown-tag": "N/A",
         "interval": 5,
-        "consume-icons": {
-            "on": "\uf01e "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\">\uf074</span> ",
-            "on": "\uf074 "
-        },
-        "repeat-icons": {
-            "on": "\uf079 "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
         "state-icons": {
             "paused": "\uf04c",
             "playing": "\uf04b"
@@ -54,6 +40,7 @@
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
+
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -61,26 +48,29 @@
             "deactivated": "\uf070"
         }
     },
+
     "tray": {
         "spacing": 10
     },
+
     "clock": {
         "format": "\uf017 {:%H:%M}",
         "format-alt": "{:%Y-%m-%d}",
         "tooltip-format": "<big>{:%A, %d %B %Y}</big>\n<tt><small>{calendar}</small></tt>"
     },
+
     "battery": {
         "states": {
             "warning": 30,
             "critical": 15
         },
         "format": "{capacity}% {icon}",
-        "format-full": "{capacity}% {icon}",
         "format-charging": "{capacity}% \uf0e7",
         "format-plugged": "{capacity}% \uf1e6",
         "format-alt": "{time} {icon}",
         "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"]
     },
+
     "power-profiles-daemon": {
         "format": "{icon}",
         "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
@@ -92,8 +82,9 @@
             "power-saver": "\uf06c"
         }
     },
+
     "network": {
-        "format-wifi": "\uf1eb {essid} ({signalStrength}%)",
+        "format-wifi": "\uf1eb {essid}",
         "format-ethernet": "\uf6ff {ipaddr}/{cidr}",
         "tooltip-format": "{ifname} via {gwaddr}\nIP: {ipaddr}",
         "format-linked": "\uf6ff {ifname} (No IP)",
@@ -101,6 +92,7 @@
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "on-click-right": "nm-connection-editor"
     },
+
     "pulseaudio": {
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
@@ -119,6 +111,7 @@
         },
         "on-click": "pavucontrol"
     },
+
     "custom/media": {
         "format": "{icon} {text}",
         "return-type": "json",
@@ -130,6 +123,7 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
     },
+
     "custom/power": {
         "format": "\u23fb ",
         "tooltip": false,
@@ -141,5 +135,14 @@
             "suspend": "systemctl suspend",
             "hibernate": "systemctl hibernate"
         }
-    }
+    },
+    
+    "custom/kbd-brightness": {
+        "exec": "brightnessctl -d dell::kbd_backlight get",
+	"interval": 1,
+    	"format": "\uf40b {}",
+    	"on-click": "brightnessctl -d dell::kbd_backlight set +1 && pkill -RTMIN+8 waybar",
+    	"on-click-right": "brightnessctl -d dell::kbd_backlight set 1- && pkill -RTMIN+8 waybar",
+    	"signal": 8
+	}
 }
