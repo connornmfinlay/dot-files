@@ -1,17 +1,35 @@
 -- LSP Config
-vim.lsp.config.rust_analyzer = {
-  cmd = { "rust-analyzer" },
-  filetypes = { "rust" },
-  root_markers = { "Cargo.toml", ".git" },
+
+-- install: npm install -g @ansible/ansible-language-server
+vim.lsp.config.ansiblels = {
+  cmd = { "ansible-language-server", "--stdio" },
+  filetypes = { "yaml.ansible" },
+  root_markers = { "ansible.cfg", ".ansible-lint", "requirements.yml", ".git" },
+  settings = {
+    ansible = {
+      validation = {
+        lint = { enabled = false },
+      },
+    },
+  },
 }
 
-vim.lsp.config.gopls = {
-  cmd = { "gopls" },
-  filetypes = { "go", "gomod", "gowork" },
-  root_markers = { "go.mod", ".git" },
-}
+vim.lsp.enable({ "ansiblels" })
 
-vim.lsp.enable({ "rust_analyzer", "gopls" })
+-- Plain *.yml/*.yaml don't carry an "ansible" filetype on their own,
+-- so tag the usual Ansible file layouts as yaml.ansible.
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = {
+    "*/playbooks/*.yml", "*/playbooks/*.yaml",
+    "*/roles/*/tasks/*.yml", "*/roles/*/tasks/*.yaml",
+    "*/roles/*/handlers/*.yml", "*/roles/*/handlers/*.yaml",
+    "*playbook*.yml", "*playbook*.yaml",
+    "site.yml", "site.yaml",
+  },
+  callback = function()
+    vim.bo.filetype = "yaml.ansible"
+  end,
+})
 
 vim.diagnostic.config({ virtual_text = true })
 

@@ -1,7 +1,7 @@
--- wallpaper.lua — matches Hyprland wallpaper palette
+-- endeavour.lua — matches Hyprland wallpaper palette (EndeavourOS)
 vim.cmd("hi clear")
 vim.opt.termguicolors = true
-vim.g.colors_name = "wallpaper"
+vim.g.colors_name = "endeavour"
 
 local bg      = "#1A0A2E"  -- deep purple background
 local bg_alt  = "#0D0019"  -- darker (sidebar/inactive)

@@ -1,5 +1,14 @@
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
+#eval "$(starship init zsh)"
+
+for f in ~/.config/zsh/*.sh; do
+    [ -r "$f" ] && . "$f"
+done
+
+export PATH="$HOME/.local/bin:$PATH"
+
+
 if [ ! -d "ZINIT_HOME" ]; then
   mkdir -p "$(dirname $ZINIT_HOME)"
   git clone git@github.com:zdharma-continuum/zinit.git "$ZINIT_HOME" 2> /dev/null
@@ -81,4 +90,4 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="/opt/homebrew/opt/llvmbin:$PATH"
