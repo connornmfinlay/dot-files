@@ -1,5 +1,12 @@
 # Bash prompt customisation
-_C_NEON=$'%{\e[38;2;63;191;254m%}'   # neon blue
+# Accent colour auto-swaps by OS, matching nvim/tmux:
+#   macOS -> pure white, bold-only (monochrome)
+#   else  -> neon blue
+if [ "$(uname)" = "Darwin" ]; then
+    _C_NEON=$'%{\e[1;38;2;255;255;255m%}'  # bold white
+else
+    _C_NEON=$'%{\e[38;2;63;191;254m%}'     # neon blue
+fi
 _C_WHITE=$'%{\e[38;2;255;255;255m%}'
 _C_DIM=$'%{\e[38;2;128;128;128m%}'   # grey for separators
 _C_RESET=$'%{\e[0m%}'
