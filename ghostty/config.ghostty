@@ -29,7 +29,8 @@ bell-features = no-audio,attention,title
 
 confirm-close-surface = false
 copy-on-select = clipboard
-shell-integration-features = no-cursor
+# Use the widely supported xterm-256color terminal type over SSH.
+shell-integration-features = no-cursor,ssh-env
 
 # Keybinds — macOS-style: alt plays the role of cmd (super belongs to Hyprland)
 # Ghostty's ctrl+shift defaults (ctrl+shift+c/v, ctrl+shift+t, ...) still work too.
