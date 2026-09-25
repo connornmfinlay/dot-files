@@ -2,6 +2,6 @@
 Type=Application
 Name=eww
 Comment=Desktop resource widgets
-Exec=sh -c "sleep 3; eww daemon; eww open resources"
+Exec=sh -c "sleep 3; exec ~/.config/eww/scripts/launch.sh"
 Terminal=false
 X-GNOME-Autostart-enabled=true
