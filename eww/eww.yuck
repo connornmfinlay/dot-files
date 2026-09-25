@@ -65,7 +65,9 @@
 (defwidget net-graph []
   (graphcard :title "NETWORK  KB/s"
              :legend "↓ ${net.down_s}    ↑ ${net.up_s}"
-    (dual-graph :a {net.down} :b {net.up} :max {max(1024, max(net.down, net.up) * 1.2)})))
+    (dual-graph :a {net.down} :b {net.up} :max {(net.down > net.up ? net.down : net.up) * 1.2 > 1024
+                                          ? (net.down > net.up ? net.down : net.up) * 1.2
+                                          : 1024})))
 
 (defwidget temp-graph []
   (graphcard :title "TEMPERATURE  °C"
