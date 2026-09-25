@@ -91,7 +91,7 @@
     (label :class "uptime" :halign "start" :text "up ${uptime}")))
 
 (defwindow resources
-  :monitor '["DP-1-2", "<primary>", "eDP-1-1"]'
+  :monitor '["DP-1-2", "eDP-1-1", "<primary>", 0]'
   :geometry (geometry :x "0px" :y "0px" :width "1000px" :anchor "center")
   :stacking "bg"
   :windowtype "desktop"
