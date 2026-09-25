@@ -1,0 +1,103 @@
+;; Resource dashboard. Toggle: eww open resources / eww close resources
+
+(defpoll time   :interval "1s"  "date '+%H:%M'")
+(defpoll day    :interval "60s" "date '+%A, %d %B'")
+(defpoll uptime :interval "60s" "uptime -p | sed 's/^up //'")
+(defpoll load   :interval "5s"  "cut -d' ' -f1-3 /proc/loadavg")
+(defpoll cputemp :interval "3s" :initial "0" "scripts/cputemp.sh")
+(defpoll fans   :interval "5s"  :initial "–" "scripts/fans.sh")
+(defpoll power  :interval "3s"  :initial '{"batt":0,"gpu":0}' "scripts/power.sh")
+(defpoll net    :interval "2s"  :initial '{"down":0,"up":0,"down_s":"–","up_s":"–"}' "scripts/net.sh")
+(defpoll gpu    :interval "3s"  :initial '{"util":0,"used":0,"total":1,"temp":0}' "scripts/gpu.sh")
+(defpoll top    :interval "5s"  :initial "" "scripts/top.sh")
+
+(defwidget meter [label value ?detail]
+  (box :class "meter" :orientation "v" :space-evenly false
+    (box :orientation "h" :space-evenly false
+      (label :class "meter-label" :halign "start" :hexpand true :text label)
+      (label :class "meter-value" :halign "end" :text "${round(value, 0)}%"))
+    (progress :class "meter-bar" :value value :orientation "h")
+    (label :class "meter-detail" :halign "start" :visible {detail != ""} :text detail)))
+
+(defwidget stat [label value]
+  (box :class "stat" :orientation "h" :space-evenly false
+    (label :class "stat-label" :halign "start" :hexpand true :text label)
+    (label :class "stat-value" :halign "end" :text value)))
+
+(defwidget card [title]
+  (box :class "card" :orientation "v" :space-evenly false :spacing 12 :hexpand true
+    (label :class "title" :halign "start" :text title)
+    (children)))
+
+(defwidget system []
+  (card :title "SYSTEM"
+    (meter :label "CPU" :value {EWW_CPU.avg}
+           :detail "load ${load}  ·  ${cputemp}°C")
+    (meter :label "RAM" :value {EWW_RAM.used_mem_perc}
+           :detail "${round(EWW_RAM.used_mem / 1073741824, 1)} / ${round(EWW_RAM.total_mem / 1073741824, 1)} GiB")
+    (meter :label "DISK /" :value {EWW_DISK["/"].used_perc}
+           :detail "${round(EWW_DISK["/"].used / 1073741824, 0)} / ${round(EWW_DISK["/"].total / 1073741824, 0)} GiB")))
+
+(defwidget gpu-net []
+  (card :title "GPU · NETWORK · POWER"
+    (meter :label "GPU" :value {gpu.util}
+           :detail "${gpu.temp}°C")
+    (meter :label "VRAM" :value {gpu.used / gpu.total * 100}
+           :detail "${gpu.used} / ${gpu.total} MiB")
+    (stat :label "↓ down" :value {net.down_s})
+    (stat :label "↑ up" :value {net.up_s})
+    (stat :label "battery" :value "${EWW_BATTERY["BAT0"].capacity}%  ${EWW_BATTERY["BAT0"].status}")))
+
+(defwidget graphcard [title ?legend]
+  (box :class "card" :orientation "v" :space-evenly false :spacing 12 :hexpand true
+    (label :class "title" :halign "start" :text title)
+    (children)
+    (label :class "legend" :halign "start" :visible {legend != ""} :text legend)))
+
+;; Two graphs stacked in an overlay; colours come from .line-a / .line-b in the scss.
+(defwidget dual-graph [a b max ?range]
+  (overlay
+    (graph :class "line-a" :value a :min 0 :max max :thickness 2 :line-style "round"
+           :time-range {range ?: "90s"} :dynamic false :height 90)
+    (graph :class "line-b" :value b :min 0 :max max :thickness 2 :line-style "round"
+           :time-range {range ?: "90s"} :dynamic false :height 90)))
+
+(defwidget net-graph []
+  (graphcard :title "NETWORK  KB/s"
+             :legend "↓ ${net.down_s}    ↑ ${net.up_s}"
+    (dual-graph :a {net.down} :b {net.up} :max {max(1024, max(net.down, net.up) * 1.2)})))
+
+(defwidget temp-graph []
+  (graphcard :title "TEMPERATURE  °C"
+             :legend "CPU ${cputemp}°C    GPU ${gpu.temp}°C    fans ${fans}"
+    (dual-graph :a cputemp :b {gpu.temp} :max 100)))
+
+(defwidget power-graph []
+  (graphcard :title "POWER  W"
+             :legend "GPU ${power.gpu} W    battery ${power.batt} W"
+    (dual-graph :a {power.gpu} :b {power.batt} :max 60)))
+
+(defwidget clock-top []
+  (box :class "card" :orientation "v" :space-evenly false :spacing 12 :hexpand true
+    (label :class "clock" :halign "start" :text time)
+    (label :class "date" :halign "start" :text day)
+    (label :class "title" :halign "start" :text "TOP PROCESSES")
+    (label :class "procs" :halign "start" :xalign 0 :text top)
+    (label :class "uptime" :halign "start" :text "up ${uptime}")))
+
+(defwindow resources
+  :monitor '["DP-1-2", "<primary>", "eDP-1-1"]'
+  :geometry (geometry :x "0px" :y "0px" :width "1000px" :anchor "center")
+  :stacking "bg"
+  :windowtype "desktop"
+  :exclusive false
+  :focusable false
+  (box :class "dash" :orientation "v" :space-evenly false :spacing 16
+    (box :orientation "h" :space-evenly true :spacing 16
+      (system)
+      (gpu-net)
+      (clock-top))
+    (box :orientation "h" :space-evenly true :spacing 16
+      (net-graph)
+      (temp-graph)
+      (power-graph))))

@@ -1,0 +1,41 @@
+$bg:     rgba(20, 20, 30, 0.75);
+$fg:     #d8dee9;
+$dim:    #7b849a;
+$accent: #7f7fff;
+$track:  rgba(255, 255, 255, 0.08);
+
+* { all: unset; }
+
+.dash {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 13px;
+  color: $fg;
+}
+
+.card {
+  background-color: $bg;
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+
+.title { color: $dim; font-size: 11px; letter-spacing: 2px; }
+.meter-value, .stat-value { color: $accent; }
+.meter-detail, .uptime, .date, .stat-label { color: $dim; font-size: 11px; }
+.clock { font-size: 40px; color: $fg; }
+.procs { font-size: 12px; }
+
+.meter-bar trough {
+  background-color: $track;
+  border-radius: 4px;
+  min-height: 6px;
+  margin: 4px 0;
+}
+.meter-bar progress {
+  background-color: $accent;
+  border-radius: 4px;
+  min-height: 6px;
+}
+
+.legend { color: $dim; font-size: 11px; }
+.line-a { color: $accent; }
+.line-b { color: #f5a97f; }
