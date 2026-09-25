@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=eww
+Comment=Desktop resource widgets
+Exec=sh -c "sleep 3; eww daemon; eww open resources"
+Terminal=false
+X-GNOME-Autostart-enabled=true
