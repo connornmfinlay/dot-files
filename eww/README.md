@@ -3,7 +3,11 @@
 Desktop resource widgets (X11 / XFCE).
 
     ln -s ~/dot-files/eww ~/.config/eww
-    eww daemon && eww open resources
+    scripts/launch.sh   # or: eww daemon && eww open resources
+
+`launch.sh` keeps the dashboard on the 34" ultrawide when it's connected
+(falling back to the laptop panel) and reopens it when monitors are plugged
+in or removed.
 
 To start on login (XFCE autostart):
 
