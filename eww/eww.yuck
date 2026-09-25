@@ -5,7 +5,7 @@
 (defpoll uptime :interval "60s" "uptime -p | sed 's/^up //'")
 (defpoll load   :interval "5s"  "cut -d' ' -f1-3 /proc/loadavg")
 (defpoll cputemp :interval "3s" :initial "0" "scripts/cputemp.sh")
-(defpoll fans   :interval "5s"  :initial "–" "scripts/fans.sh")
+(defpoll fans   :interval "5s"  :initial '{"cpu":0,"gpu":0}' "scripts/fans.sh")
 (defpoll power  :interval "3s"  :initial '{"batt":0,"gpu":0}' "scripts/power.sh")
 (defpoll net    :interval "2s"  :initial '{"down":0,"up":0,"down_s":"–","up_s":"–"}' "scripts/net.sh")
 (defpoll gpu    :interval "3s"  :initial '{"util":0,"used":0,"total":1,"temp":0}' "scripts/gpu.sh")
@@ -48,11 +48,13 @@
     (stat :label "↑ up" :value {net.up_s})
     (stat :label "battery" :value "${EWW_BATTERY["BAT0"].capacity}%  ${EWW_BATTERY["BAT0"].status}")))
 
-(defwidget graphcard [title ?legend]
+(defwidget graphcard [title ?legend ?legend2]
   (box :class "card" :orientation "v" :space-evenly false :spacing 12 :hexpand true
     (label :class "title" :halign "start" :text title)
     (children)
-    (label :class "legend" :halign "start" :visible {legend != ""} :text legend)))
+    (box :orientation "v" :space-evenly false :spacing 4
+      (label :class "legend" :halign "start" :visible {legend != ""} :text legend)
+      (label :class "legend" :halign "start" :visible {legend2 != ""} :text legend2))))
 
 ;; Two graphs stacked in an overlay; colours come from .line-a / .line-b in the scss.
 (defwidget dual-graph [a b max ?range]
@@ -71,7 +73,8 @@
 
 (defwidget temp-graph []
   (graphcard :title "TEMPERATURE  °C"
-             :legend "CPU ${cputemp}°C    GPU ${gpu.temp}°C    fans ${fans}"
+             :legend "CPU ${cputemp}°C   fan ${fans.cpu} RPM"
+             :legend2 "GPU ${gpu.temp}°C   fan ${fans.gpu} RPM"
     (dual-graph :a cputemp :b {gpu.temp} :max 100)))
 
 (defwidget power-graph []

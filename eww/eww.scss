@@ -18,7 +18,7 @@ $track:  rgba(255, 255, 255, 0.08);
   padding: 16px 18px;
 }
 
-.title { color: $dim; font-size: 11px; letter-spacing: 2px; }
+.title { color: $dim; font-size: 11px; }
 .meter-value, .stat-value { color: $accent; }
 .meter-detail, .uptime, .date, .stat-label { color: $dim; font-size: 11px; }
 .clock { font-size: 40px; color: $fg; }
