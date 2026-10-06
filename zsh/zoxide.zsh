@@ -1,2 +1,2 @@
 # Zoxide
-eval "$(zoxide init bash)"
+eval "$(zoxide init zsh)"
