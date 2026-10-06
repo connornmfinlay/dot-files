@@ -6,4 +6,7 @@ export FZF_DEFAULT_OPTS="
   --color=marker:$THEME_ACCENT2,fg+:$THEME_TEXT,prompt:$THEME_ACCENT,hl+:$THEME_ACCENT2
   --height 40% --reverse --border
 "
-source /usr/share/fzf/key-bindings.zsh
+# Arch/EndeavourOS and Fedora install the key bindings in different places
+for f in /usr/share/fzf/key-bindings.zsh /usr/share/fzf/shell/key-bindings.zsh; do
+    [ -r "$f" ] && source "$f" && break
+done
