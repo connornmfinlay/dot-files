@@ -8,6 +8,7 @@ for f in ~/.config/zsh/*.zsh; do
 done
 
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"
 
 autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
