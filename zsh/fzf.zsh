@@ -6,7 +6,12 @@ export FZF_DEFAULT_OPTS="
   --color=marker:$THEME_ACCENT2,fg+:$THEME_TEXT,prompt:$THEME_ACCENT,hl+:$THEME_ACCENT2
   --height 40% --reverse --border
 "
-# Arch/EndeavourOS and Fedora install the key bindings in different places
-for f in /usr/share/fzf/key-bindings.zsh /usr/share/fzf/shell/key-bindings.zsh; do
-    [ -r "$f" ] && source "$f" && break
-done
+# Newer fzf (Homebrew, 0.48+) generates its own key bindings/completion;
+# Arch/EndeavourOS and Fedora install the key-binding files in different places
+if command -v fzf >/dev/null 2>&1 && fzf --zsh >/dev/null 2>&1; then
+    source <(fzf --zsh)
+else
+    for f in /usr/share/fzf/key-bindings.zsh /usr/share/fzf/shell/key-bindings.zsh; do
+        [ -r "$f" ] && source "$f" && break
+    done
+fi

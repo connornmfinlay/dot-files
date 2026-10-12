@@ -1,7 +1,22 @@
 _os_id=""
 [ -r /etc/os-release ] && _os_id=$(. /etc/os-release && echo "$ID")
+[[ "$OSTYPE" == darwin* ]] && _os_id=macos
 
 case "$_os_id" in
+    macos)
+        # pure black & white (matches tmux/nvim macOS themes)
+        _C_ACCENT=$'%{\e[38;2;255;255;255m%}'
+        _C_ACCENT2=$'%{\e[38;2;191;191;191m%}'
+        _C_TEXT=$'%{\e[38;2;255;255;255m%}'
+        _C_DIM=$'%{\e[38;2;128;128;128m%}'
+
+        THEME_ACCENT="#FFFFFF"
+        THEME_ACCENT2="#BFBFBF"
+        THEME_TEXT="#FFFFFF"
+        THEME_DIM="#808080"
+        THEME_BG="#000000"
+        THEME_BG_ALT="#1A1A1A"
+        ;;
     fedora)
         # Fedora-inspired neon blue on black
         _C_ACCENT=$'%{\e[38;2;63;191;254m%}'

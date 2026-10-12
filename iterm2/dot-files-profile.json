@@ -1,0 +1,26 @@
+{
+  "Profiles": [
+    {
+      "Name": "dot-files",
+      "Guid": "6F1A2B3C-D0F1-4E5A-9A00-D07F11E50001",
+      "Dynamic Profile Parent Name": "Default",
+      "Normal Font": "Menlo-Regular 14",
+      "Use Non-ASCII Font": false,
+      "Unlimited Scrollback": true,
+      "Option Key Sends": 2,
+      "Right Option Key Sends": 2,
+      "Mouse Reporting": true,
+      "Silence Bell": true,
+      "Unicode Version": 9,
+      "Cursor Type": 2,
+      "Blinking Cursor": false,
+      "Background Color": { "Red Component": 0, "Green Component": 0, "Blue Component": 0, "Alpha Component": 1, "Color Space": "sRGB" },
+      "Foreground Color": { "Red Component": 1, "Green Component": 1, "Blue Component": 1, "Alpha Component": 1, "Color Space": "sRGB" },
+      "Bold Color": { "Red Component": 1, "Green Component": 1, "Blue Component": 1, "Alpha Component": 1, "Color Space": "sRGB" },
+      "Cursor Color": { "Red Component": 1, "Green Component": 1, "Blue Component": 1, "Alpha Component": 1, "Color Space": "sRGB" },
+      "Cursor Text Color": { "Red Component": 0, "Green Component": 0, "Blue Component": 0, "Alpha Component": 1, "Color Space": "sRGB" },
+      "Selection Color": { "Red Component": 0.25, "Green Component": 0.25, "Blue Component": 0.25, "Alpha Component": 1, "Color Space": "sRGB" },
+      "Selected Text Color": { "Red Component": 1, "Green Component": 1, "Blue Component": 1, "Alpha Component": 1, "Color Space": "sRGB" }
+    }
+  ]
+}

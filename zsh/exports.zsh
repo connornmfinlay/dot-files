@@ -11,7 +11,9 @@ _A2=$(_hex_rgb $THEME_ACCENT2)
 _T=$(_hex_rgb $THEME_TEXT)
 _BG=$(_hex_rgb $THEME_BG)
 
-# ls colours: accent dominant, text colour for files
+export CLICOLOR=1   # BSD/macOS ls
+
+# ls colours (GNU): accent dominant, text colour for files
 export LS_COLORS="di=38;2;${_A};1:ln=38;2;${_T}:ex=38;2;${_A2}:*.md=38;2;${_T}:*.txt=38;2;${_T}"
 
 # grep match highlight
